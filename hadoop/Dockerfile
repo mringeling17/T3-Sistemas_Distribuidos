@@ -34,9 +34,11 @@ COPY yarn-site.xml $HADOOP_HOME/etc/hadoop/
 
 COPY docker-entrypoint.sh $HADOOP_HOME/etc/hadoop/
 
-ENV PATH $PATH:$HADOOP_HOME/bin:$HADOOP_HOME/sbin
+#DATA
+RUN mkdir /home/hduser/data
+COPY ../data /home/hduser/data
 
-ADD ../data/ data/
+ENV PATH $PATH:$HADOOP_HOME/bin:$HADOOP_HOME/sbin
 
 EXPOSE 50070 50075 50010 50020 50090 8020 9000 9864 9870 10020 19888 8088 8030 8031 8032 8033 8040 8042 22
 
