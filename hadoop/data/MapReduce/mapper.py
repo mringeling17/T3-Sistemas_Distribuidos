@@ -1,3 +1,5 @@
+#!/usr/bin/python
+
 #https://www.geeksforgeeks.org/hadoop-streaming-using-python-word-count-problem/
 import sys
 
