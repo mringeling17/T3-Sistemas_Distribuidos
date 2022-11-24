@@ -25,6 +25,8 @@ services:
       - "8042:8042"
       - "22:22"
     restart: always
+    volumes:
+      - ./hadoop/output:/home/hduser/data/output
 
   postgres:
     image: postgres:latest

@@ -55,7 +55,9 @@ $HADOOP_HOME/bin/hdfs dfsadmin -safemode leave
 
 $HADOOP_HOME/bin/mapred streaming -mapper "python /home/hduser/data/scripts/mapper.py" -reducer "python /home/hduser/data/scripts/reducer.py" -input input/* -output output
 
-$HADOOP_HOME/bin/hdfs dfs -cat "output/*"
+$HADOOP_HOME/bin/hdfs dfs -cat "output/part-00000"
+
+$HADOOP_HOME/bin/hdfs dfs -get output/part-00000 /home/hduser/data/output/output.txt
 
 # keep the container running indefinitely
 tail -f $HADOOP_HOME/logs/hadoop-*-namenode-*.log
