@@ -10,7 +10,8 @@ while count <= 10:
         for line in f:
             # separate word from count as an array
             word, reps = line.split("\t", 1)
-            t = (count, int(reps))
+            t = {count: int(reps)}
+            print(t)
             if word not in output:
                 output[word] = []
             output[str(word)].append(t)
