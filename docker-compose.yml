@@ -38,17 +38,16 @@ services:
     volumes:
       - ./hadoop/data/output:/home/hduser/data/output
 
-  postgres:
-    image: postgres:latest
-    container_name: postgres
-    environment:
-      - POSTGRES_PASSWORD=postgres
-      - POSTGRES_USER=postgres
-      - POSTGRES_DB=tarea3
-      - TZ=America/Santiago
-    ports:
-      - "5432:5432"
+  mongo:
+    container_name: mongo
+    image: mongo
     restart: always
+    ports:
+      - "27017:27017"
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=tarea3
+      - MONGO_INITDB_DATABASE=wiki
 
   cliente:
     container_name: cliente
