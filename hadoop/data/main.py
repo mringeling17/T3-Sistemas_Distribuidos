@@ -1,5 +1,6 @@
 import wikipedia as wiki
 import os
+import time
 
 artists = ["Bad Bunny", "Dua Lipa", "Ariana Grande", "Karol_G", "The Weeknd", "Justin Bieber", "Post Malone", "Ed Sheeran", "Taylor Swift", "Bizarrap"]
 wiki.set_lang('es')
@@ -15,4 +16,14 @@ for i in artists:
     with open(folder+str(count) + '.txt', 'w', encoding='utf-8') as f:
         f.write(a.content)
     count += 1
+if not os.path.exists("./output/"):
+    os.makedirs("./output/")
+if os.path.exists("./output/output.txt"):
+    os.remove("./output/output.txt")
 
+while True:
+    time.sleep(2)
+    print("Waiting for file...")
+    if os.path.exists("./output/output.txt"):
+        print("FILE FOUND!")
+        break

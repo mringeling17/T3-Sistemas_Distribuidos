@@ -57,6 +57,11 @@ $HADOOP_HOME/bin/mapred streaming -mapper "python /home/hduser/data/scripts/mapp
 
 $HADOOP_HOME/bin/hdfs dfs -cat "output/part-00000"
 
+FILE=/home/hduser/data/output/output.txt
+if test -f "$FILE"; then
+        rm $FILE
+fi
+
 $HADOOP_HOME/bin/hdfs dfs -get output/part-00000 /home/hduser/data/output/output.txt
 
 # keep the container running indefinitely

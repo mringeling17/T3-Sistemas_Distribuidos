@@ -1,6 +1,14 @@
 version: '3.9'
 
 services:
+  app:
+    container_name: app
+    build: ./hadoop/data
+    environment:
+      - PYTHONUNBUFFERED=1
+    volumes:
+      - ./hadoop/data/output:/app/output
+
   hadoop:
     container_name: hadoop
     build: ./hadoop
@@ -25,8 +33,10 @@ services:
       - "8042:8042"
       - "22:22"
     restart: always
+    depends_on:
+      - app
     volumes:
-      - ./hadoop/output:/home/hduser/data/output
+      - ./hadoop/data/output:/home/hduser/data/output
 
   postgres:
     image: postgres:latest
