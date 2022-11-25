@@ -5,6 +5,7 @@
 import sys
 
 current_word = None
+current_document = None
 current_count = 0
 word = None
 

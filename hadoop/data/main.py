@@ -18,12 +18,12 @@ for i in artists:
     count += 1
 if not os.path.exists("./output/"):
     os.makedirs("./output/")
-if os.path.exists("./output/output.txt"):
-    os.remove("./output/output.txt")
+if os.path.exists("./output/output.json"):
+    os.remove("./output/output.json")
 
 while True:
     time.sleep(2)
-    print("Waiting for file...")
-    if os.path.exists("./output/output.txt"):
+    print("Waiting for Hadoop output file...")
+    if os.path.exists("./output/output.json"):
         print("FILE FOUND!")
         break

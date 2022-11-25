@@ -35,7 +35,7 @@ COPY yarn-site.xml $HADOOP_HOME/etc/hadoop/
 COPY docker-entrypoint.sh $HADOOP_HOME/etc/hadoop/
 
 #DATA
-RUN mkdir /home/hduser/data && mkdir /home/hduser/data/carpeta1 && mkdir /home/hduser/data/carpeta2 && mkdir /home/hduser/data/scripts && mkdir /home/hduser/data/output
+RUN mkdir /home/hduser/data && mkdir /home/hduser/data/carpeta1 && mkdir /home/hduser/data/carpeta2 && mkdir /home/hduser/data/scripts && mkdir /home/hduser/data/output && mkdir /home/hduser/data/op
 ADD ./data/MapReduce/* /home/hduser/data/scripts/
 ADD ./data/carpeta1/* /home/hduser/data/carpeta1/
 ADD ./data/carpeta2/* /home/hduser/data/carpeta2/
