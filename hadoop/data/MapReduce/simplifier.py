@@ -11,10 +11,10 @@ while count <= 10:
             # separate word from count as an array
             word, reps = line.split("\t", 1)
             t = {count: int(reps)}
-            print(t)
+            #print(t)
             if word not in output:
-                output[word] = []
-            output[str(word)].append(t)
+                output[word] = {}
+            output[word].update(t)
 
     count += 1
 
