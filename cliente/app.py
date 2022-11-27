@@ -20,6 +20,7 @@ def index():
 @app.route("/uwu", methods=['GET'])
 def uwu():
     search = request.args.get('search')
+    search = search.lower()
     app.logger.info("search: " + search)
     documents = []
     document_reps = []
@@ -54,6 +55,7 @@ def uwu():
 @app.route("/uwu2", methods=['GET'])
 def uwu2():
     search = request.args.get('search')
+    search = search.lower()
     app.logger.info("search: " + search)
     mayor = 0
     doc_mayor = 0
