@@ -17,7 +17,8 @@ app = Flask(__name__)
 @app.route('/')
 def index():
     return jsonify({'message': 'Hello World!'})
-@app.route("/uwu", methods=['GET'])
+
+@app.route("/full", methods=['GET'])
 def uwu():
     search = request.args.get('search')
     search = search.lower()
@@ -52,7 +53,7 @@ def uwu():
                 a = {'url': url, 'reps': reps}
                 ret.append(a)
             return jsonify({'message': 'Resultados de la busqueda ordenados por repeticiones de la palabra', 'result': ret})
-@app.route("/uwu2", methods=['GET'])
+@app.route("/max", methods=['GET'])
 def uwu2():
     search = request.args.get('search')
     search = search.lower()
@@ -68,8 +69,6 @@ def uwu2():
             return jsonify({'message': 'No results'})
         else:
             count = result['count']
-            #word: "000"
-            #count:  [{"1": 2}, {"2": 1}, {"3": 5}, {"5": 10}, {"6": 8}, {"7": 4}, {"8": 9}, {"9": 14}],
             app.logger.info(count)
             for i in count:
                 reps = count[i]
