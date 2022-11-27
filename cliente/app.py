@@ -1,42 +1,29 @@
 import requests
 import logging
 from flask import Flask, jsonify, request
-from flask_caching import Cache
-import psycopg2 as pg
-#import redis
+
+from pymongo import MongoClient
+
+client = MongoClient('mongodb://mongo:27017/', username='root', password='tarea3')
+db = client['wiki']
+collection = db['pages']   
 
 app = Flask(__name__)
-app.config.from_object('config.Config')
-cache = Cache(app)
 
-postgres = pg.connect(
-        dbname='tarea3',
-        user='postgres',
-        password='postgres',
-        host='postgres',
-        port='5432')
-cursor = postgres.cursor()
-
-#redis = redis.Redis(host='redis', port=6379, db=0)
-#redis.config_set('maxmemory-policy', 'allkeys-lru')
-#redis.flushall()
-#redis.config_set('maxmemory', '2mb')
-
+@app.route('/')
+def index():
+    return jsonify({'message': 'Hello World!'})
 
 @app.route("/uwu", methods=['GET'])
-def get_data():
+def uwu():
     search = request.args.get('search')
-    #cache = redis.get(search.upper())
-    app.logger.info(f"Cache: {cache}")
-    if cache == None:
-        #cursor.execute(f"SELECT * FROM country WHERE name LIKE '%{search.upper()}%'")
-        #redis.flushall()
-        #data = cursor.fetchall()
-        #redis.set(search.upper(), str(data))
-        return jsonify(data), "DB"
+   #search search in mongo
+    result = collection.find_one({'title': search})
+    if result is None:
+        return jsonify({'message': 'Not found'}), 404
     else:
-        return cache, "REDIS"
+        return jsonify(result), 200
 
 
 if __name__ == "__main__":
-    app.run(debug=True, host="0.0.0.0", port=5000)
+    app.run(debug=True, host='0.0.0.0' , port=5000)

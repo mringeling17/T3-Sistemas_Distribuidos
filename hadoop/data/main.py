@@ -17,10 +17,12 @@ if not os.path.exists(folder):
     os.makedirs(folder)
     os.makedirs("./carpeta2/")
 for i in artists:
+    print("Artista: " + i)
     a = wiki.page(i)
     if count>5:
         folder = "./carpeta2/"
     with open(folder+str(count) + '.txt', 'w', encoding='utf-8') as f:
+        print("Buscando en wikipedia...")
         f.write(a.content)
     count += 1
 if not os.path.exists("./output/"):
